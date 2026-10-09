@@ -27,20 +27,31 @@ namespace Diyar.Game
                 return;
             }
 
+            TestInteractable target =
+                interactionTarget.GetComponent<TestInteractable>();
+
+            if (target == null || target.HasInteracted)
+            {
+                IsTargetInRange = false;
+                return;
+            }
+
             // Measure from the player's center to the nearest point on the box.
-            Vector3 playerCenter = transform.TransformPoint(characterController.center);
+            Vector3 playerCenter =
+                transform.TransformPoint(characterController.center);
+
             Vector3 targetPoint = interactionTarget.ClosestPoint(playerCenter);
             float distanceToTarget = Vector3.Distance(playerCenter, targetPoint);
 
             IsTargetInRange = distanceToTarget <= interactionRange;
 
-           if (IsTargetInRange && Input.GetKeyDown(KeyCode.E))
+            if (IsTargetInRange && Input.GetKeyDown(KeyCode.E))
             {
-                TestInteractable target = interactionTarget.GetComponent<TestInteractable>();
+                target.Interact();
 
-                if (target != null)
+                if (target.HasInteracted)
                 {
-                    target.Interact();
+                    IsTargetInRange = false;
                 }
             }
         }
