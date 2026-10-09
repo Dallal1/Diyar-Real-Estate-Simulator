@@ -19,14 +19,6 @@ namespace Diyar.Game
                     normal = { textColor = Color.white }
                 };
             }
-
-            float panelWidth = Mathf.Min(430f, Screen.width - 24f);
-            GUI.Box(new Rect(12f, 12f, panelWidth, 126f), GUIContent.none, panelStyle);
-            GUI.Label(new Rect(24f, 22f, panelWidth - 24f, 110f),
-                "DIYAR · TESTGELÄNDE\n" +
-                "WASD / Pfeiltasten: Gehen   ·   Shift: Rennen\n" +
-                "Leertaste: Springen\n" +
-                "Rechte Maustaste halten: Kamera drehen", textStyle);
         }
     }
 }
