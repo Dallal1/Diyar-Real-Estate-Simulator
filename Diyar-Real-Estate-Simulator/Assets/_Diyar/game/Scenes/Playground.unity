@@ -1091,6 +1091,8 @@ MonoBehaviour:
   propertyId: damascus_apartment_001
   purchasePrice: 150
   playerWallet: {fileID: 8326131993166800688}
+  propertyRepair: {fileID: 457175221}
+  repairValueIncrease: 60
 --- !u!136 &836649470
 CapsuleCollider:
   m_ObjectHideFlags: 0
