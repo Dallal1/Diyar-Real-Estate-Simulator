@@ -550,7 +550,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1673685630992299193, guid: df49a6be6fd9144daaeced89467037cd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.76
+      value: 13.21
       objectReference: {fileID: 0}
     - target: {fileID: 1673685630992299193, guid: df49a6be6fd9144daaeced89467037cd, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3245,6 +3245,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6089426386728553199, guid: c4292c37c361b4a2ba22f5b8ffe24364, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8326131993166800682}
+    - targetCorrespondingSourceObject: {fileID: 6089426386728553199, guid: c4292c37c361b4a2ba22f5b8ffe24364, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8326131993166800688}
+    - targetCorrespondingSourceObject: {fileID: 6089426386728553199, guid: c4292c37c361b4a2ba22f5b8ffe24364, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8326131993166800687}
   m_SourcePrefab: {fileID: 100100000, guid: c4292c37c361b4a2ba22f5b8ffe24364, type: 3}
 --- !u!4 &8326131993166800680 stripped
 Transform:
@@ -3273,6 +3279,32 @@ MonoBehaviour:
   - {fileID: 948235635}
   - {fileID: 307387835}
   interactionRange: 2
+--- !u!114 &8326131993166800687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8326131993166800681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18c9ade4bdbaa43c6b50124abce72f74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerWallet: {fileID: 8326131993166800688}
+--- !u!114 &8326131993166800688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8326131993166800681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37bfa410ef7014e69b78069cd1cfc877, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  balance: 100
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
