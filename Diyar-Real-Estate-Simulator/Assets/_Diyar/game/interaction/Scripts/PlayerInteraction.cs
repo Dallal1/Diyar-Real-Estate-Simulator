@@ -11,6 +11,7 @@ namespace Diyar.Game
         private CharacterController characterController;
 
         public bool IsTargetInRange { get; private set; }
+        public string InteractionText { get; private set; } = "";
 
         private void Awake()
         {
@@ -19,20 +20,21 @@ namespace Diyar.Game
 
         private void Update()
         {
-            TestInteractable target = FindClosestAvailableTarget();
+            IInteractable target = FindClosestAvailableTarget();
             IsTargetInRange = target != null;
+            InteractionText = target != null ? target.InteractionText : "";
 
             if (IsTargetInRange && Input.GetKeyDown(KeyCode.E))
             {
                 target.Interact();
-                IsTargetInRange = !target.HasInteracted;
+                IsTargetInRange = target.CanInteract;
             }
         }
 
-        private TestInteractable FindClosestAvailableTarget()
+        private IInteractable FindClosestAvailableTarget()
         {
             Vector3 playerCenter = transform.TransformPoint(characterController.center);
-            TestInteractable closestTarget = null;
+            IInteractable closestTarget = null;
             float closestDistance = float.PositiveInfinity;
 
             foreach (Collider targetCollider in interactionTargets)
@@ -42,11 +44,12 @@ namespace Diyar.Game
                     continue;
                 }
 
-                TestInteractable target = targetCollider.GetComponent<TestInteractable>();
+                IInteractable target = targetCollider.GetComponent<IInteractable>();
 
-                if (target == null || !target.isActiveAndEnabled || target.HasInteracted)
+                if (target == null || !target.CanInteract)
+                {
                     continue;
-                
+                }
 
                 // Measure to the collider surface, not the object's pivot.
                 Vector3 targetPoint = targetCollider.ClosestPoint(playerCenter);

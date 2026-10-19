@@ -3,10 +3,12 @@ using UnityEngine;
 namespace Diyar.Game
 {
     [RequireComponent(typeof(MeshRenderer))]
-    public sealed class TestInteractable : MonoBehaviour
+    public sealed class TestInteractable : MonoBehaviour, IInteractable
     {
         [SerializeField] private Color interactionColor = Color.green;
         public bool HasInteracted { get; private set; }
+        public bool CanInteract => isActiveAndEnabled && !HasInteracted;
+        public string InteractionText => "E – Interagieren";
 
         private Material objectMaterial;
 

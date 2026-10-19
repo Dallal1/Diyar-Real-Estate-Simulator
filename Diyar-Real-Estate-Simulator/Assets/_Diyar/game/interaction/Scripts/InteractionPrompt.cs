@@ -26,7 +26,7 @@ namespace Diyar.Game
             }
 
             Rect promptArea = new Rect((Screen.width - 260f) / 2f, Screen.height - 76f, 260f, 48f);
-            GUI.Box(promptArea, "E – Interagieren", promptStyle);
+            GUI.Box(promptArea, playerInteraction.InteractionText, promptStyle);
         }
     }
 }
