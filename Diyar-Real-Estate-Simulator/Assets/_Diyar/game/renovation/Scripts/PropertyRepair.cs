@@ -9,11 +9,13 @@ namespace Diyar.Game
         [SerializeField] private PlayerWallet playerWallet;
         [SerializeField, Min(1)] private int repairCost = 30;
         [SerializeField] private Color repairedColor = Color.green;
+        [SerializeField] private string repairId = "wall_repair_001";
 
         private Material objectMaterial;
         private bool isRepaired;
 
         public bool IsRepaired => isRepaired;
+        public string RepairId => repairId;
 
         public bool CanInteract =>
             isActiveAndEnabled

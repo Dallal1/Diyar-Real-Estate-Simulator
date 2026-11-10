@@ -14,7 +14,7 @@ namespace Diyar.Game
 
         [Header("Movement")]
         [SerializeField, Min(0.1f)] private float walkSpeed = 2.5f;
-        [SerializeField, Min(0.1f)] private float runSpeed = 5.5f;
+        [SerializeField, Min(0.1f)] private float runSpeed = 10.5f;
         [SerializeField, Min(1f)] private float rotationSpeed = 720f;
 
         [Header("Jump")]

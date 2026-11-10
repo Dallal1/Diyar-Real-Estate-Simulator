@@ -1,0 +1,7 @@
+newmtl White
+Kd 0.95 0.95 0.95
+newmtl Metal
+Kd 0.6 0.6 0.6
+newmtl SignMat
+Kd 1 1 1
+map_Kd sign_texture.png

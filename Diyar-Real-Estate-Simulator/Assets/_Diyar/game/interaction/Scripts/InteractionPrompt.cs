@@ -10,7 +10,9 @@ namespace Diyar.Game
 
         private void OnGUI()
         {
-            if (playerInteraction == null || !playerInteraction.IsTargetInRange)
+            if (playerInteraction == null
+                || !playerInteraction.IsTargetInRange
+                || string.IsNullOrWhiteSpace(playerInteraction.InteractionText))
             {
                 return;
             }
@@ -21,12 +23,24 @@ namespace Diyar.Game
                 {
                     fontSize = 20,
                     alignment = TextAnchor.MiddleCenter,
+                    wordWrap = true,
+                    padding = new RectOffset(16, 16, 10, 10),
                     normal = { textColor = Color.white }
                 };
             }
 
-            Rect promptArea = new Rect((Screen.width - 260f) / 2f, Screen.height - 76f, 260f, 48f);
-            GUI.Box(promptArea, playerInteraction.InteractionText, promptStyle);
+            GUIContent promptContent = new GUIContent(playerInteraction.InteractionText);
+            float maxWidth = Mathf.Max(180f, Screen.width - 32f);
+            float promptWidth = Mathf.Min(480f, Mathf.Max(300f, promptStyle.CalcSize(promptContent).x));
+            promptWidth = Mathf.Min(promptWidth, maxWidth);
+            float promptHeight = promptStyle.CalcHeight(promptContent, promptWidth);
+            Rect promptArea = new Rect(
+                (Screen.width - promptWidth) * 0.5f,
+                Screen.height - promptHeight - 28f,
+                promptWidth,
+                promptHeight);
+
+            GUI.Box(promptArea, promptContent, promptStyle);
         }
     }
 }

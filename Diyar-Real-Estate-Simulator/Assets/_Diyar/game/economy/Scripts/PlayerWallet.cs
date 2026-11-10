@@ -4,24 +4,30 @@ namespace Diyar.Game
 {
     public sealed class PlayerWallet : MonoBehaviour
     {
-        [SerializeField, Min(0)] private int balance = 100;
+        [SerializeField, Min(0)] private int balance = 100000;
 
         public int Balance => balance;
 
         private void Awake()
         {
+            if (SaveManager.HasSave)
+            {
+                balance = SaveManager.Load().Balance;
+            }
+
             balance = Mathf.Max(0, balance);
         }
 
         public bool AddMoney(int amount)
         {
-            // Reject invalid amounts and prevent integer overflow.
             if (amount <= 0 || amount > int.MaxValue - balance)
             {
                 return false;
             }
 
             balance += amount;
+            SaveManager.SaveBalance(balance);
+
             return true;
         }
 
@@ -33,6 +39,8 @@ namespace Diyar.Game
             }
 
             balance -= amount;
+            SaveManager.SaveBalance(balance);
+
             return true;
         }
 

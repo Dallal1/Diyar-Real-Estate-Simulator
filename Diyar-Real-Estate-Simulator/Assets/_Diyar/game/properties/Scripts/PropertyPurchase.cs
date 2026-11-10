@@ -25,6 +25,19 @@ namespace Diyar.Game
                 ? repairValueIncrease
                 : 0);
 
+        private void Awake()
+        {
+            PropertySaveData savedProperty = SaveManager.FindProperty(propertyId);
+
+            if (savedProperty == null)
+            {
+                return;
+            }
+
+            isOwned = savedProperty.IsOwned;
+            isSold = savedProperty.IsSold;
+        }
+
         public bool CanInteract =>
             isActiveAndEnabled
             && !isSold
@@ -63,6 +76,7 @@ namespace Diyar.Game
             }
 
             isOwned = true;
+            SaveManager.SavePropertyState(propertyId, isOwned, isSold);
 
             Debug.Log($"Immobilie gekauft: {propertyId}", this);
         }
@@ -85,6 +99,7 @@ namespace Diyar.Game
 
             isOwned = false;
             isSold = true;
+            SaveManager.SavePropertyState(propertyId, isOwned, isSold);
 
             Debug.Log($"Immobilie verkauft: {propertyId}", this);
         }

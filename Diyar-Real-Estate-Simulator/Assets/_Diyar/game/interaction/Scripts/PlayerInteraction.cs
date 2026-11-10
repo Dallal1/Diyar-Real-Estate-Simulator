@@ -13,6 +13,32 @@ namespace Diyar.Game
         public bool IsTargetInRange { get; private set; }
         public string InteractionText { get; private set; } = "";
 
+        public void RegisterTarget(Collider targetCollider)
+        {
+            if (targetCollider == null)
+            {
+                return;
+            }
+
+            if (interactionTargets == null)
+            {
+                interactionTargets = new Collider[0];
+            }
+
+            foreach (Collider existingTarget in interactionTargets)
+            {
+                if (existingTarget == targetCollider)
+                {
+                    return;
+                }
+            }
+
+            Collider[] expandedTargets = new Collider[interactionTargets.Length + 1];
+            interactionTargets.CopyTo(expandedTargets, 0);
+            expandedTargets[expandedTargets.Length - 1] = targetCollider;
+            interactionTargets = expandedTargets;
+        }
+
         private void Awake()
         {
             characterController = GetComponent<CharacterController>();
